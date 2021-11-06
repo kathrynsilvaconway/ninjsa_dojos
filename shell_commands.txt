@@ -1,0 +1,88 @@
+>>> from dojo_ninjas.models import *
+
+>>> Dojo.objects.create(name='Central Dojo', city='Chicago', state='IL')
+<Dojo: Dojo object (1)>
+>>> Dojo.objects.create(name='Western', city='Los Angeles', state='CA')
+<Dojo: Dojo object (2)>
+>>> Dojo.objects.create(name='Eastern', city='Miami', state='FL')
+<Dojo: Dojo object (3)>
+>>>
+
+>>> dojo_to_delete = Dojo.objects.get(id=1)
+>>> dojo_to_delete.delete()
+(1, {'dojo_ninjas.Ninja': 0, 'dojo_ninjas.Dojo': 1})
+>>> dojo_to_delete = Dojo.objects.get(id=2)
+>>> dojo_to_delete.delete()
+(1, {'dojo_ninjas.Ninja': 0, 'dojo_ninjas.Dojo': 1})
+>>> dojo_to_delete = Dojo.objects.get(id=3)
+>>> dojo.delete.name
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'dojo' is not defined
+>>> dojo_to_delete.name
+'Eastern'
+>>> dojo_to_delete.delete()
+(1, {'dojo_ninjas.Ninja': 0, 'dojo_ninjas.Dojo': 1})
+>>>
+
+>>> Ninja.objects.create(dojo=Dojo.objects.get(id=6), first_name='Kathryn', last_name='Ramsay')
+<Ninja: Ninja object (2)>
+>>> Ninja.objects.create(dojo=Dojo.objects.get(id=6), first_name='Steve', last_name='Jobs')
+<Ninja: Ninja object (3)>
+>>> Ninja.objects.create(dojo=Dojo.objects.get(id=6), first_name='Michael', last_name='Beckwith')
+<Ninja: Ninja object (4)>
+>>>
+
+>>> Ninja.objects.create(dojo=Dojo.objects.get(id=6), first_name='Kathryn', last_name='Ramsay')
+<Ninja: Ninja object (2)>
+>>> Ninja.objects.create(dojo=Dojo.objects.get(id=6), first_name='Steve', last_name='Jobs')
+<Ninja: Ninja object (3)>
+>>> Ninja.objects.create(dojo=Dojo.objects.get(id=6), first_name='Michael', last_name='Beckwith')
+<Ninja: Ninja object (4)>
+>>> Ninja.objects.create(dojo=Dojo.objects.get(id=4), first_name='Deborah', last_name='Johnson'))
+  File "<console>", line 1
+    Ninja.objects.create(dojo=Dojo.objects.get(id=4), first_name='Deborah', last_name='Johnson')
+^SyntaxError: invalid syntax
+>>> Ninja.objects.create(dojo=Dojo.objects.get(id=4), first_name='Deborah', last_name='Johnson')
+<Ninja: Ninja object (5)>
+>>> Ninja.objects.create(dojo=Dojo.objects.get(id=4), first_name='Rickie', last_name='Byars')
+<Ninja: Ninja object (6)>
+>>> Ninja.objects.create(dojo=Dojo.objects.get(id=4), first_name='Wayne', last_name='Dyer')
+<Ninja: Ninja object (7)>
+>>> Ninja.objects.create(dojo=Dojo.objects.get(id=5), first_name='Louise', last_name='Hay')
+<Ninja: Ninja object (8)>
+>>> Ninja.objects.create(dojo=Dojo.objects.get(id=5), first_name='James', last_name='Smith')
+<Ninja: Ninja object (9)>
+>>> Ninja.objects.create(dojo=Dojo.objects.get(id=5), first_name='Alex', last_name='Jones')
+<Ninja: Ninja object (10)>
+>>>
+
+(djangoenv1) C:\Users\kathr\OneDrive\Desktop\PYTHON\django\django_intro\djangoenv1\Silva_Kathryn_Ninjas_Dojos>python manage.py makemigrations
+You are trying to add a non-nullable field 'desc' to dojo without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> 'old dojo'
+Migrations for 'dojo_ninjas':
+  dojo_ninjas\migrations\0002_dojo_desc.py
+    - Add field desc to dojo
+
+(djangoenv1) C:\Users\kathr\OneDrive\Desktop\PYTHON\django\django_intro\djangoenv1\Silva_Kathryn_Ninjas_Dojos>python manage.py makemigrations
+No changes detected
+
+(djangoenv1) C:\Users\kathr\OneDrive\Desktop\PYTHON\django\django_intro\djangoenv1\Silva_Kathryn_Ninjas_Dojos>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_ninjas, sessions
+Running migrations:
+  Applying dojo_ninjas.0002_dojo_desc... OK
+
+>>> from dojo_ninjas.models import *
+>>> Dojo.objects.create(name='South', city='Atlanta', state='GA', desc='This is the description.')
+<Dojo: Dojo object (8)>
+>>>
+>>> Dojo.objects.first().ninjas.all()
+<QuerySet [<Ninja: Ninja object (5)>, <Ninja: Ninja object (6)>, <Ninja: Ninja object (7)>]>

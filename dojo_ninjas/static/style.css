@@ -1,0 +1,26 @@
+
+
+#wrapper {
+    width: 600px;
+    background-color: black;
+    font-family: sans-serif;
+    color: white;
+    display: inline-block;
+    padding: 20px;
+
+
+}
+h1, h3, li {
+    text-align: center;
+}
+
+.pinkform {
+    width: 180px;
+    height: 250px;
+    background-color: violet;
+    color: black;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 70px;
+    padding-left: 10px;
+}
